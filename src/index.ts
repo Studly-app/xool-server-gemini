@@ -1,8 +1,16 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import { PrismaClient } from '@prisma/client/extension'
 
 
 const app = new Hono()
+const prisma = new PrismaClient()
+
+await prisma.user.create({
+  data: {
+    name: 'Dani',
+    email: 'dani@gmail.com'},
+});
 
 app.get('/', (c) => {
   console.log('Received a request at /3000')
